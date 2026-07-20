@@ -1,7 +1,7 @@
+import { execFileSync } from "node:child_process";
 import { createHmac } from "node:crypto";
 import * as core from "@actions/core";
 import { HttpClient } from "@actions/http-client";
-import * as shell from "shelljs";
 import type { LarkResponse, RequestSignature } from "./types";
 
 export function toBoolean(value: string | undefined) {
@@ -65,15 +65,17 @@ export function getCardHeader() {
 }
 
 export function getCardElements() {
-  const result = shell.exec("git log -1 --pretty=%B", { silent: true });
-  if (result.code !== 0) {
+  let lastGitMessage = "";
+  try {
+    lastGitMessage = execFileSync("git", ["log", "-1", "--pretty=%B"], {
+      encoding: "utf8",
+    }).trim();
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
     core.setFailed(
-      `Cannot get Git information. Have you setup the action correctly? ${
-        result.stderr ?? result.stdout
-      }`,
+      `Cannot get Git information. Have you setup the action correctly? ${detail}`,
     );
   }
-  const lastGitMessage = result.stdout.trim();
 
   return [
     {
