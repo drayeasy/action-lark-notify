@@ -3,7 +3,12 @@
   "version": "0.1.4",
   "private": true,
   "description": "A GitHub action to notify in Lark.",
-  "keywords": ["GitHub", "Actions", "JavaScript", "Lark"],
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "JavaScript",
+    "Lark"
+  ],
   "homepage": "https://github.com/drayeasy/action-lark-notify#readme",
   "bugs": {
     "url": "https://github.com/drayeasy/action-lark-notify/issues"
@@ -17,46 +22,41 @@
     "name": "Ray Wu",
     "email": "ray.wu@drayeasy.com"
   },
-  "type": "commonjs",
+  "type": "module",
   "exports": {
     ".": "./dist/index.js"
   },
   "scripts": {
-    "build": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
-    "build:watch": "pnpm run build --watch",
-    "check": "biome check --write .",
+    "build": "tsx ./scripts/build.ts",
+    "build:watch": "tsx ./scripts/build.ts --watch",
+    "check": "biome check --write . && tsc --noEmit",
     "local": "local-action . src/main.ts .env",
     "make-badge": "tsx ./scripts/make-badge.ts",
-    "prepare": "is-ci || simple-git-hooks",
+    "prepare": "is-ci || lefthook install",
     "release": "release-it",
     "preversion": "pnpm run check && pnpm run build",
     "postversion": "pnpm run make-badge"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/http-client": "^2.2.3",
-    "shelljs": "^0.8.5"
+    "@actions/core": "^3.0.1",
+    "@actions/http-client": "^4.0.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@commitlint/cli": "^19.7.1",
-    "@commitlint/config-conventional": "^19.7.1",
-    "@github/local-action": "^2.6.2",
-    "@release-it/conventional-changelog": "^10.0.0",
-    "@tsconfig/node22": "^22.0.0",
-    "@types/node": "^22.13.4",
-    "@types/shelljs": "^0.8.15",
-    "@vercel/ncc": "^0.38.3",
-    "badge-maker": "^4.1.0",
+    "@biomejs/biome": "^2.5.4",
+    "@github/local-action": "^7.0.1",
+    "@release-it/conventional-changelog": "^11.0.1",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/node": "^24.13.3",
+    "badge-maker": "^6.0.0",
+    "esbuild": "^0.28.1",
     "is-ci": "^4.1.0",
-    "lint-staged": "^15.4.3",
-    "release-it": "^18.1.2",
-    "simple-git-hooks": "^2.11.1",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "lefthook": "^2.1.10",
+    "release-it": "^20.2.1",
+    "tsx": "^4.23.1",
+    "typescript": "^6.0.3"
   },
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@9.15.9",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }
