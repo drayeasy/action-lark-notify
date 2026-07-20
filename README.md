@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Lark Notification
         uses: drayeasy/action-lark-notify@main
         env:
           LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK }}
 ```
 
-3. Create `SLACK_WEBHOOK` secret using [GitHub Action's Secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets-for-a-repository). You can [generate a Lark bot webhook](https://open.larksuite.com/document/client-docs/bot-v3/add-custom-bot#da10d830).
+3. Create `LARK_WEBHOOK` secret using [GitHub Action's Secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets-for-a-repository). You can [generate a Lark bot webhook](https://open.larksuite.com/document/client-docs/bot-v3/add-custom-bot#da10d830).
 
 ## Environment Variables
 
