@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.2.0](https://github.com/drayeasy/action-lark-notify/compare/v0...v0.2.0) (2026-07-20)
+
+
+### Bug Fixes
+
+* await notify and replace shelljs with execFileSync ([e64b665](https://github.com/drayeasy/action-lark-notify/commit/e64b6651a9fa2d54821ec96afcd4cb5ce496e8d9))
+
 ## [0.1.4](https://github.com/drayeasy/action-lark-notify/compare/v0.1.3...v0.1.4) (2025-02-17)
 
 
